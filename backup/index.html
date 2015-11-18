@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+<head>
+    <meta charset="utf-8" />
+
+    <!-- Убираем # из URL, которая автоматом подставляется Angular -->
+    <!-- TODO: Not working. Breaks all relative links when activated -->
+    <!-- <base href="/"> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content='true' name='HandheldFriendly'/>
+    <meta content='width' name='MobileOptimized'/>
+    <meta content='yes' name='apple-mobile-web-app-capable'/>
+
+    <title>Віртуальне відділення Unison Bank</title>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!--plugins!-->
+    <link rel="stylesheet" property='stylesheet' href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" media="all"/>
+    <link rel="stylesheet" property='stylesheet' href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" media="all" />
+    
+    <!--style!-->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" property='stylesheet' href="css/normalize.css" type="text/css" media="all" />
+    <link rel="stylesheet" property='stylesheet' href="css/slick-theme.css" type="text/css" media="all" />
+    <link rel="stylesheet" property='stylesheet' href="css/slick.css" type="text/css" media="all" />
+    <link rel="stylesheet" property='stylesheet' href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" property='stylesheet' href="css/mod_style.css" type="text/css" media="all" />
+    <!--<link rel="stylesheet" property='stylesheet' href="css/ng-animate-styles.used.css" type="text/css" media="all" />-->
+
+    <script src="js/plugins/jquery.min.js"></script>
+    <script src="js/plugins/jquery-ui.min.js"></script>
+
+
+    <script type="text/javascript" src="js/plugins/jquery.inview.js"></script>
+    <script type="text/javascript" src="js/plugins/slick.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-mocks/angular-mocks.js"></script>
+    <!--<script src="lib/angular-route/angular-route.min.js"></script>-->
+    <script src="lib/ui-router/release/angular-ui-router.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <!--<script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>-->
+
+    <script src="js/ngapp.js"></script>
+    <script src="js/_config.js"></script>
+    <script src="js/_rooting.js"></script>
+    <script src="js/_run.js"></script>
+    <script src="js/_preferences.js"></script>
+    <script src="js/_constants.js"></script>
+
+    <!-- controllers block -->
+    <script src="js/controllers/_module-ctrl.js"></script>
+    <script src="js/controllers/controllers.js"></script>
+
+    <!-- services block -->
+    <script src="js/services/_module-srvc.js"></script>
+    <script src="js/services/ajaxsvc-srvc.js"></script>
+    <script src="js/services/cookies-srvc.js"></script>
+    <script src="js/services/form-constructor-srvc.js"></script>
+
+    <!-- directives block -->
+    <script src="js/directives/_module-drct.js"></script>
+    <script src="js/directives/key-advantages-drct.js"></script>
+    <script src="js/directives/main-slider-block-drct.js"></script>
+    <script src="js/directives/fast-menu-drct.js"></script>
+    <script src="js/directives/big-menu-drct.js"></script>
+    <script src="js/directives/products-filters-drct.js"></script>
+    <script src="js/directives/order-form-drct.js"></script>
+    <script src="js/directives/utilities-drct.js"></script>
+    <script src="js/directives/header-lang-btn-drct.js"></script>
+
+    <!-- filters block -->
+    <script src="js/filters/_module-fltr.js"></script>
+    <script src="js/filters/unique-fltr.js"></script>
+
+</head>
+<body>
+    <div class="wrap">
+        <!-- 23.10.15 modified from needs.html added class needs-header -->
+        <!-- original was <div class="header"> -->
+        <div class="header">
+            <div class="container">
+                <a ng-click="topcycle()" class="logo left">
+                    <img src="img/logo.svg" height="50">
+                </a>
+                <div class="phone">
+                    <i class="fa fa-phone"></i> 0 (800) 300-307
+                </div>
+                <!-- /////////// CHOOSE LANG DIRECTIVE GOES HERE ///////////// -->
+                <div header-lang-btn></div>
+                <!-- /////////// CHOOSE LANG DIRECTIVE GOES HERE ///////////// -->
+                <a href="javascript:;" class="menu-btn right">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="javascript:;" class="auth-btn right">
+                    <i class="fa fa-user"></i> Вход
+                </a>
+                <div class="clear"></div>
+            </div>
+        </div> 
+        <div class="call-popup">
+            <div class="contact-centre">
+                Контакт центр: (044) 3-907-707, 0 (800) 300-307
+            </div>
+            <a href="javascript:;" class="btn">Заказать обратный звонок</a>
+            <a href="skype:unisonbank?call" class="btn">Позвонить по Skype</a>
+            <a href="javascript:;" class="btn">Начать Facebook чат</a>
+            <a href="skype:unisonbank?chat" class="btn">Skype-чат</a>
+        </div>
+
+        <!-- ///////////////////// BIG WHITE IS INCLUDED HERE ///////////////// -->
+        <div big-menu></div>
+        <!-- ///////////////////// BIG WHITE IS INCLUDED HERE ///////////////// -->
+
+        <!-- ///////////////////// TEMPLATE IS INCLUDED HERE ///////////////// -->
+        <div ui-view></div>
+        <!-- ///////////////////// TEMPLATE IS INCLUDED HERE ///////////////// -->
+
+    </div>
+    <div class="footer">
+        <div class="container clearfix">
+            <div class="menu-footer">
+                <ul>
+                    <li>
+                        <a ui-sref="home">Главная</a>
+                    </li>           
+                    <li>
+                        <a ui-sref="productsandservices">Продукты и услуги</a>
+                    </li>
+                    <li>
+                        <a ui-sref="maininformsection">Информация о банке</a>
+                    </li>
+                    <li>
+                        <a ui-sref="contacts">Контакты и реквизиты</a>
+                    </li> 
+                    <li>
+                        <a ui-sref="userprofile">Личный кабинет</a>
+                    </li>
+                    <li>
+                        <a ui-sref="faq">Вопросы и ответы</a>
+                    </li>          
+                </ul>
+            </div>
+            <div class="contacts">
+                Контакт-центр: 
+                <span>(044) 3-907-707</span>,
+                <span>0 (800) 300-307</span>
+            </div>
+            <div class="social">
+                <a href="" class="fb"><i class="fa fa-facebook"></i></a>            
+                <a href="" class="g"><i class="fa fa-google-plus"></i></a>
+                <a href="" class="tw"><i class="fa fa-twitter"></i></a>
+                <a href="" class="vk"><i class="fa fa-vk"></i></a>
+            </div>
+            <div class="left unison">
+                © ПАТ «Банк «ЮНІСОН»
+            </div>
+            <div class="right unison">
+                <a href="http://www.unisonbank.com.ua/">Перейти на корпоративный сайт</a>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-top">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+
+    <div class="popup auth-popup">
+        <div class="popup-container">
+            <div class="popup-close">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="popup-title">
+                Авторизация
+            </div>
+            <div class="popup-body">
+                <form>  
+                    <label>Логин</label>              
+                    <input type="text" required="">
+                    <label>Пароль</label>                
+                    <input type="text" required="" class="error">
+                    <p class="error">ошибка</p>
+                    <div class="clearfix">                        
+                        <button class="right btn" value="Submit">Войти</button>
+                    </div>                      
+                </form>
+
+                <div class="centered">
+                    <a href="javascript:;" class="simple-link">Напомнить пароль</a>
+                    <span>&#124;</span>
+                    <a href="registration.html" class="simple-link">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

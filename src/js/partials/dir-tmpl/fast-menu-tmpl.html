@@ -1,0 +1,7 @@
+<div class="fast-menu">
+    <div class="container clearfix">
+        <a ng-repeat="item in fastMenuData.items" ui-sref="productsandservices({ fast_menu_filter: '{{ item.name }}' })" class="fast-menu-item left">
+            {{ item.name }}
+        </a>
+    </div>
+</div>
