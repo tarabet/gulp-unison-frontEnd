@@ -1,5 +1,5 @@
 <div class="key-advantage" ng-repeat="item in ajxObj.items">
-    <div class="container clearfix">
+    <div class="container clearfix" in-view="inViewTrigger($inview, $event)" in-view-options="{ debounce: 100 }">
         <div class="img">
             <img ng-src="{{item.file_name}}">
         </div>
