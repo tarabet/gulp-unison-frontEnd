@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="PROJECT" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/jsons/fastMenu.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/jsons/keyAdvSlide.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/jsons/mainSlider.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/jsons/orderForm.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/jsons/productsFilters.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src_original/app/main/main.controller.js" charset="UTF-8" />
   </component>
 </project>

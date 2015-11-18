@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ng-empty-project.iml" filepath="$PROJECT_DIR$/.idea/ng-empty-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ng-yo-angular-test.iml" filepath="$PROJECT_DIR$/.idea/ng-yo-angular-test.iml" />
     </modules>
   </component>
 </project>

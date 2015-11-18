@@ -1,23 +1,12 @@
 {
-  "name": "unison-cb",
-  "version": "0.0.0",
-  "authors": [
-    "Tarabet <tarabet@yandex.ru>"
-  ],
-  "description": "ng-unison-cb-demo",
-  "moduleType": [
-    "amd"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests",
-    "lib"
-  ],
+  "name": "UnisonFrontEnd",
+  "version": "0.0.1",
   "dependencies": {
-    "angular-route": "~1.4.7"
+    "angular": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "angular-cookies": "~1.4.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.7"
   }
 }

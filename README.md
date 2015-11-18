@@ -1,2 +1,0 @@
-# unisonFrontEnd
-unisonFrontEnd on AngulaJS

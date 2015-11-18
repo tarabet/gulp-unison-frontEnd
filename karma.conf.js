@@ -1,86 +1,93 @@
-// Karma configuration
-// Generated on Tue Nov 03 2015 09:10:36 GMT+0200 (Финляндия (зима))
+'use strict';
+
+var path = require('path');
+var conf = require('./gulp/conf');
+
+var _ = require('lodash');
+var wiredep = require('wiredep');
+
+var pathSrcHtml = [
+  path.join(conf.paths.src, '/**/*.html')
+];
+
+function listFiles() {
+  var wiredepOptions = _.extend({}, conf.wiredep, {
+    dependencies: true,
+    devDependencies: true
+  });
+
+  return wiredep(wiredepOptions).js
+    .concat([
+      path.join(conf.paths.src, '/app/**/*.module.js'),
+      path.join(conf.paths.src, '/app/**/*.js'),
+      path.join(conf.paths.src, '/**/*.spec.js'),
+      path.join(conf.paths.src, '/**/*.mock.js'),
+    ])
+    .concat(pathSrcHtml);
+}
 
 module.exports = function(config) {
-  config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+  var configuration = {
+    files: listFiles(),
 
+    singleRun: true,
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    autoWatch: false,
 
-
-    // list of files / patterns to load in the browser
-    files: [
-        'js/plugins/jquery.min.js',
-        'js/plugins/jquery-ui.min.js',
-
-        'lib/angular/angular.min.js',
-        'lib/ui-router/release/angular-ui-router.min.js',
-        'lib/angular-mocks/angular-mocks.js',
-        'lib/angular-cookies/angular-cookies.min.js',
-
-        'js/*.js',
-        'js/controllers/*.js',
-        'js/directives/*.js',
-        'js/filters/*.js',
-        'js/partials/*.html',
-        'js/plugins/*.js',
-        'js/services/*.js',
-
-        'tests/*.js',
-        'tests/specs/*.js'
-    ],
-
-
-    // list of files to exclude
-    exclude: [
-    ],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
+    ngHtml2JsPreprocessor: {
+      stripPrefix: conf.paths.src + '/',
+      moduleName: 'ngYoAngularTest'
     },
 
+    logLevel: 'WARN',
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    frameworks: ['jasmine', 'angular-filesort'],
 
+    angularFilesort: {
+      whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
+    },
 
-    // web server port
-    port: 9876,
+    browsers : ['PhantomJS'],
 
+    plugins : [
+      'karma-phantomjs-launcher',
+      'karma-angular-filesort',
+      'karma-coverage',
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
+    ],
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
 
+    reporters: ['progress']
+  };
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+  // This is the default preprocessors configuration for a usage with Karma cli
+  // The coverage preprocessor is added in gulp/unit-test.js only for single tests
+  // It was not possible to do it there because karma doesn't let us now if we are
+  // running a single test or not
+  configuration.preprocessors = {};
+  pathSrcHtml.forEach(function(path) {
+    configuration.preprocessors[path] = ['ng-html2js'];
+  });
 
+  // This block is needed to execute Chrome on Travis
+  // If you ever plan to use Chrome and Travis, you can keep it
+  // If not, you can safely remove it
+  // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
+  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
+    configuration.customLaunchers = {
+      'chrome-travis-ci': {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    };
+    configuration.browsers = ['chrome-travis-ci'];
+  }
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultanous
-    concurrency: Infinity
-  })
-}
+  config.set(configuration);
+};
