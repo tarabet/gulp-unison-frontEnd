@@ -2,4 +2,4 @@
  * Created by Shuriken on 30.10.2015.
  */
 
-var appDirectives = angular.module('appDirectives', ['angular-inview']);
+var appDirectives = angular.module('appDirectives', ['angular-inview', 'slick']);

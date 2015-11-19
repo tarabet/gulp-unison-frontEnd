@@ -37,13 +37,13 @@ $(document).ready(function () {
         $('.auth-popup').show();
     });
 
-
-    $(".slider-main-item.item-anim")
-        .mousemove(function(e) {
-            var _thisW = $(this).width();
-            var _coord = parseFloat(-((_thisW - e.clientX)/_thisW * 100 / 10)); 
-            $(this).find(".bg-img").css('left',_coord+'%')
-        })
+    //COMMENTED AS IT IS USED IN DIRECTIVE
+    //$(".slider-main-item.item-anim")
+    //    .mousemove(function(e) {
+    //        var _thisW = $(this).width();
+    //        var _coord = parseFloat(-((_thisW - e.clientX)/_thisW * 100 / 10));
+    //        $(this).find(".bg-img").css('left',_coord+'%')
+    //    })
 
     $(".needs-main-block")
         .mousemove(function(e) {
@@ -58,7 +58,7 @@ $(document).ready(function () {
     $(".needs-main-block").height($(window).height());
 
     $(".slider-main .slider-main-item").height($(window).height() - 160);
-    
+
     setTimeout(function(){
             $(".key-advantage .container .text").each(function( i ) {
                 var _parentH = $(this).parent().innerHeight();
@@ -84,26 +84,26 @@ $(document).ready(function () {
             });
         },2000)
 
-    })
-
-
-    $('.key-advantage .text').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
-        if (isInView) {            
-            $(this).addClass('animated');
-        }
-    });
-    $('.key-advantage .img').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
-        if (isInView) {            
-            $(this).addClass('animated');
-        }
     });
 
-    $('.slider-main').slick({
-        dots: false,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-    });
+    // COMMENTED AS IT IS USED IN DIRECTIVES
+    //$('.key-advantage .text').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
+    //    if (isInView) {
+    //        $(this).addClass('animated');
+    //    }
+    //});
+    //$('.key-advantage .img').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
+    //    if (isInView) {
+    //        $(this).addClass('animated');
+    //    }
+    //});
+    //
+    //$('.slider-main').slick({
+    //    dots: false,
+    //    infinite: true,
+    //    speed: 300,
+    //    slidesToShow: 1,
+    //});
 
     $('.spec-offer-slider').slick({
         dots: false,
