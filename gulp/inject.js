@@ -12,16 +12,13 @@ var _ = require('lodash');
 gulp.task('inject', ['scripts'], function () {
 
   var injectStyles = gulp.src([
-    path.join(conf.paths.src, '/css/**/*.used.css')
+    path.join(conf.paths.src, '/css/**/*.used.css'),
+    path.join('https://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic')
   ], { read: false });
 
   var injectScripts = gulp.src([
     path.join(conf.paths.src, '/js/**/*.module.js'),
     path.join(conf.paths.src, '/js/**/*.js'),
-    path.join(conf.paths.src, '/js/*.js'),
-    //path.join(conf.paths.src, '/js/**/*.js'),
-    path.join('!' + conf.paths.src, '/js/site.js'),
-    path.join('!' + conf.paths.src, '/js/plugins/*.js'),
     path.join('!' + conf.paths.src, '/app/**/*.spec.js'),
     path.join('!' + conf.paths.src, '/app/**/*.mock.js')
   ])
