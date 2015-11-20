@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ng-yo-angular-test.iml" filepath="$PROJECT_DIR$/.idea/ng-yo-angular-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gulp-unison-frontEnd.iml" filepath="$PROJECT_DIR$/.idea/gulp-unison-frontEnd.iml" />
     </modules>
   </component>
 </project>
