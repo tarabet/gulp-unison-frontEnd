@@ -18,7 +18,7 @@
 
                 .then(function (response) {
                     scope.mainSliderData = response.data;
-                    console.log('Main slider data obj:', scope.mainSliderData);
+                    // console.log('Main slider data obj:', scope.mainSliderData);
                 },
                 function (response) {
                     console.log('Some error happened: ', response);

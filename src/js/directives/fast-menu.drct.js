@@ -17,7 +17,7 @@
 
                     .then(function (response) {
                         scope.fastMenuData = response.data;
-                        console.log('Fast menu data obj:', scope.fastMenuData);
+                        // console.log('Fast menu data obj:', scope.fastMenuData);
                     },
                     function (response) {
                         console.log('Some error happened: ', response);

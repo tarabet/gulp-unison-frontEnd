@@ -41,7 +41,7 @@
             ajaxSvc.getData(keyAdvSlide.url)
                 .then(function (response) {
                     scope.ajxObj = response.data;
-                    console.log('Advantages obj is:', scope.ajxObj);
+                    // console.log('Advantages obj is:', scope.ajxObj);
                 },
                 function (response) {
                     console.log('Some error happened: ', response);
