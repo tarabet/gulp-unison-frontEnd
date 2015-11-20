@@ -12,18 +12,15 @@
 
         function link(scope, element, attrs) {
 
-            setTimeout(function () {
+            $('.menu-btn').click(function (e) {
+                e.preventDefault();
+                $('.big-menu').show();
+            });
+            $('.close-big-menu').click(function (e) {
+                e.preventDefault();
+                $('.big-menu').hide();
+            });
 
-                $('.menu-btn').click(function (e) {
-                    e.preventDefault();
-                    $('.big-menu').show();
-                });
-                $('.close-big-menu').click(function (e) {
-                    e.preventDefault();
-                    $('.big-menu').hide();
-                });
-
-            }, 1);
         }
 
 

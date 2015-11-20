@@ -26,6 +26,7 @@
         .controller('departmentsmaplistCtrl', ['$scope', departmentsmaplistCtrl]) //Maybe will not be used
         .controller('productscreditCtrl', ['$scope', productscreditCtrl]); //Maybe will not be used
 
+
     function homepageCtrl($scope) {
         //Do nothing right now
     }

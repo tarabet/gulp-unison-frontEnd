@@ -13,8 +13,13 @@ angular.module('appRooting', ['ui.router'])
         var delay = function ($q, $timeout) {
             var delay = $q.defer();
             $timeout(delay.resolve, 100);
-            $('.close-big-menu').trigger('click'); //TODO: FIND THE WAY TO CLOSE BIG MENU AUTOMATICALY
+            $('.big-menu').hide();
             return delay.promise;
+        };
+
+        // CLOSES ANY .POPUP ELEMENT ON RESOLVE
+        var closePopup = function() {
+            return $('.popup').hide();
         };
 
         $urlRouterProvider.otherwise('/');
@@ -266,6 +271,18 @@ angular.module('appRooting', ['ui.router'])
                 resolve: {
                     // I will cause a 1 second delay
                     delay: delay
+                }
+            })
+
+            .state('registration', {
+                url: '/registration',
+                templateUrl: 'js/partials/registration-tmpl.html',
+                controller: 'RegistrationCtrl',
+                data: {requireLogin: false},
+                resolve: {
+                    // I will cause a 1 second delay
+                    delay: delay,
+                    closePopup: closePopup
                 }
             })
     }]);
