@@ -1,17 +1,17 @@
 <div class="auth-form">
     <div class="container clearfix">
-        <h1>Регистрация</h1>
-        <form class="default-form">
+        <h1>{{ regFunct.welcomeMessage }}</h1>
+        <form class="default-form" ng-submit="regFunct.createUsr()" novalidate>
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" required="">
+            <input ng-model="regData.email" id="email" type="text" name="email">
             <label>Имя</label>
-            <input type="text" required="">
+            <input ng-model="regData.name" type="text" name="name">
             <label>Пароль</label>
-            <input type="text" required="" class="error">
+            <input ng-model="regData.pass" type="text" class="error" name="pass">
             <p class="error">ошибка</p>
             <div class="centered">
                 <a href="javascript:;" class="simple-link">Назад</a>
-                <button class="btn " value="Submit">Регистрация</button>
+                <button class="btn" value="Submit">Регистрация</button>
             </div>
         </form>
         <div class="simple-text">

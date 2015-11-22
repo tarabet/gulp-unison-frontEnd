@@ -277,7 +277,7 @@ angular.module('appRooting', ['ui.router'])
             .state('registration', {
                 url: '/registration',
                 templateUrl: 'js/partials/registration-tmpl.html',
-                controller: 'RegistrationCtrl',
+                controller: 'registrationCtrl',
                 data: {requireLogin: false},
                 resolve: {
                     // I will cause a 1 second delay

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/bower_components/angular-animate/angular-animate.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bower_components/font-awesome/bower.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/js/controllers/ctrl.module.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/js/controllers/registration.ctrl.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/js/directives/big-menu.drct.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/js/directives/drct.module.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/js/index.rooting.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/jsons/fastMenu.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/jsons/keyAdvSlide.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/jsons/mainSlider.json" charset="UTF-8" />
