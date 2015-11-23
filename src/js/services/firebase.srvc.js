@@ -6,15 +6,14 @@
 
     angular
         .module('appServices')
-        .factory('firebaseSvc', [firebaseSvc]);
+        .factory('AuthSvc', ['$firebaseAuth', 'constants', AuthSvc]);
 
-    function firebaseSvc() {
+    function AuthSvc($firebaseAuth, constants) {
 
+        var ref = new Firebase(constants.FirebaseUrl);
+        auth = $firebaseAuth(ref);
 
-
-        return {
-
-        }
+        return auth;
     }
 
 })();

@@ -5,29 +5,39 @@
 (function() {
     angular
         .module('appControllers')
-        .controller('registrationCtrl', ['$scope', '$firebaseAuth', RegistrationCtrl]);
+        .controller('registrationCtrl', ['AuthSvc', '$state', RegistrationCtrl]);
 
-    function RegistrationCtrl ($scope, $firebaseAuth) {
+    function RegistrationCtrl (AuthSvc, $state) {
 
-      var ref = new Firebase("https://boiling-inferno-2557.firebaseio.com");
+        var authCtrl = this;
 
-      var auth = $firebaseAuth(ref);
+        console.log(AuthSvc);
 
-      $scope.regFunct = {
-        welcomeMessage: "Hello World",
-        createUsr: function() {
-          console.log($scope.regData.email);
-          console.log($scope.regData.name);
-          console.log($scope.regData.pass);
-        }
-      };
+        authCtrl.user = {
+            email: '',
+            password: ''
+        };
 
+        authCtrl.login = function() {
+            console.log('Login triggered');
+            AuthSvc.$authWithPassword(authCtrl.user).then(function(auth) {
+                $state.go('home');
+                console.log('Success: ', auth);
+            },
+            function(error) {
+                authCtrl.error = error;
+            });
+        };
 
-      $scope.regData = {
-        email: '',
-        name: '',
-        pass: ''
-      };
-    }
+        authCtrl.register = function() {
+            AuthSvc.$createUser(authCtrl.user).then(function(user) {
+                authCtrl.login();
+            },
+            function(error) {
+                authCtrl.error = error;
+            });
+        };
+
+      }
 
 })();

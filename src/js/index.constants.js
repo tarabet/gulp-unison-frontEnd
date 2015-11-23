@@ -8,6 +8,7 @@
 angular.module('appConstants', [])
     .constant('constants', {
 
-        version: '1.0.0'
+        version: '1.0.0',
+        FirebaseUrl: 'https://boiling-inferno-2557.firebaseio.com'
 
     });

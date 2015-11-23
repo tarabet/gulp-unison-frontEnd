@@ -7,12 +7,15 @@
             Авторизация
         </div>
         <div class="popup-body">
-            <form>
+            <form ng-submit="authCtrl.login()" ng-controller="registrationCtrl as authCtrl">
                 <label>Логин</label>
-                <input type="text" required="">
+                <input ng-model="authCtrl.user.email" type="text" required="">
                 <label>Пароль</label>
-                <input type="text" required="" class="error">
+                <input ng-model="authCtrl.user.password" type="text" required="" class="error">
                 <p class="error">ошибка</p>
+                <div class="error" ng-show="authCtrl.error">
+                    <span>{{ authCtrl.error.message }}</span>
+                </div>
                 <div class="clearfix">
                     <button class="right btn" value="Submit">Войти</button>
                 </div>

@@ -10,19 +10,21 @@
 
     function loginBtn() {
 
-        function link(scope, element, attrs) {
+        function link(scope, element, attrs, registrationCtrl) {
+
+            console.log(registrationCtrl);
 
             element.find(".popup-close").click(function(e){
                 e.preventDefault();
                 element.hide();
             });
-
         }
 
         return {
             restrict: 'A',
             link: link,
             replace: true,
+            controller: "registrationCtrl",
             templateUrl: "js/partials/dir-tmpl/login-btn-tmpl.html"
         }
     }
