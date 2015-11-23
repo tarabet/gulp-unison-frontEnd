@@ -6,8 +6,8 @@
         <div class="popup-title">
             Авторизация
         </div>
-        <div class="popup-body">
-            <form ng-submit="authCtrl.login()" ng-controller="registrationCtrl as authCtrl">
+        <div class="popup-body" ng-controller="registrationCtrl as authCtrl">
+            <form ng-submit="authCtrl.login()">
                 <label>Логин</label>
                 <input ng-model="authCtrl.user.email" type="text" required="">
                 <label>Пароль</label>
@@ -25,6 +25,8 @@
                 <a href="javascript:;" class="simple-link">Напомнить пароль</a>
                 <span>&#124;</span>
                 <a ui-sref="registration" class="simple-link">Регистрация</a>
+                <span>&#124;</span>
+                <a ng-click="authCtrl.logout()" class="simple-link">Logout</a>
             </div>
         </div>
     </div>

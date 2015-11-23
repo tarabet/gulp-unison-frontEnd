@@ -12,8 +12,6 @@
 
         function link(scope, element, attrs, registrationCtrl) {
 
-            console.log(registrationCtrl);
-
             element.find(".popup-close").click(function(e){
                 e.preventDefault();
                 element.hide();
