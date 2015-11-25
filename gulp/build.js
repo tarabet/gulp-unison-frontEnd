@@ -10,8 +10,8 @@ var $ = require('gulp-load-plugins')({
 
 gulp.task('partials', function () {
   return gulp.src([
-    path.join(conf.paths.src, '/app/**/*.html'),
-    path.join(conf.paths.tmp, '/serve/app/**/*.html')
+    path.join(conf.paths.src, '/js/partials/**/*.html'),
+    path.join(conf.paths.tmp, '/serve/partials/**/*.html')
   ])
     .pipe($.minifyHtml({
       empty: true,
@@ -19,8 +19,8 @@ gulp.task('partials', function () {
       quotes: true
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: 'ngYoAngularTest',
-      root: 'app'
+      module: 'ngApp',
+      root: 'js/partials'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
 });
