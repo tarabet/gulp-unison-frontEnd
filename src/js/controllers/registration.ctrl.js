@@ -36,6 +36,7 @@
         };
 
         authCtrl.logout = function() {
+            console.log('Unauth triggered');
           AuthSvc.$unauth();
           $state.go('home');
         };

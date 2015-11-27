@@ -24,6 +24,7 @@
             link: link,
             replace: true,
             controller: "registrationCtrl",
+            controllerAs: "authCtrl",
             templateUrl: "js/partials/dir-tmpl/login-btn-tmpl.html"
         }
     }
