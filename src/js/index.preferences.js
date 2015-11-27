@@ -5,9 +5,14 @@
 // We store applications preferences in this module. These data can be changed by user or other modules
 // And can be injected in controllers/directives/services as global variable
 
-angular.module('appPreferences', [])
-    .value('preferences', {
+(function() {
+    'use strict';
 
-        lang_pref: ''
+        angular
+        .module('appPreferences', [])
+        .value('preferences', {
+            lang_pref: ''
+        });
 
-    });
+
+})();

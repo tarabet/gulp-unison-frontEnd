@@ -2,11 +2,14 @@
  * Created by Shuriken on 06.11.2015.
  */
 
-angular.module('appConfig', [])
-    .config([
-        '$provide',
+(function() {
+    'use strict';
 
-        function($provide) {
+    angular
+        .module('appConfig', [])
+        .config(['$provide', Config]);
+
+        function Config($provide) {
 
             // START INJECT SERVICE WITH EXTERNAL DATA URLS //
             $provide.factory('extDataUrls', function() {
@@ -27,5 +30,6 @@ angular.module('appConfig', [])
                 }
             });
             // END INJECT SERVICE WITH EXTERNAL DATA URLS //
+        }
 
-}]);
+})();

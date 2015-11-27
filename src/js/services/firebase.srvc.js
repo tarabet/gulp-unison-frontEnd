@@ -3,14 +3,17 @@
  */
 
 (function() {
+    'use strict';
 
     angular
-        .module('appServices')
-        .factory('AuthSvc', ['$firebaseAuth', 'constants', AuthSvc]);
+    .module('appServices')
+    .factory('AuthSvc', ['$firebaseAuth', 'constants', AuthSvc]);
 
     function AuthSvc($firebaseAuth, constants) {
 
-        var ref = new Firebase(constants.FirebaseUrl);
+        var ref, auth;
+
+        ref = new Firebase(constants.FirebaseUrl);
         auth = $firebaseAuth(ref);
 
         return auth;

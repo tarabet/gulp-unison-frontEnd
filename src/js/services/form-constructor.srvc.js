@@ -3,6 +3,7 @@
  */
 
 (function() {
+    'use strict';
 
     angular
         .module('appServices')
@@ -12,7 +13,7 @@
 
         //appServices.factory('formConstructSvc', function() {
 
-        var readyForm, section, fieldsObj, sectionsHTML, sectionWithColumns, elem;
+        var readyForm, section, fieldsObj, sectionsHTML, sectionWithColumns, elem, sectionHTML;
         var rootElement = document.createDocumentFragment();
 
         function matchSectionNames(sectionName) {

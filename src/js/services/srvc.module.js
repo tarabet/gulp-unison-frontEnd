@@ -2,7 +2,13 @@
  * Created by Shuriken on 30.10.2015.
  */
 
-var appServices = angular.module('appServices', [
-    'ngCookies',
-    'firebase'
-]);
+(function() {
+    'use strict';
+
+    angular
+    .module('appServices', [
+        'ngCookies',
+        'firebase'
+    ]);
+
+})();

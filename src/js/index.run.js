@@ -2,48 +2,50 @@
  * Created by Shuriken on 06.11.2015.
  */
 
-angular.module('appRun', [])
-    .run([
-        '$rootScope',
-        '$state',
-        '$stateParams',
+(function() {
+    'use strict';
 
-        function ($rootScope,   $state,   $stateParams) {
+    angular
+        .module('appRun', [])
+        .run(['$rootScope', '$state', '$stateParams', Run]);
 
-            $rootScope.topcycle = function () {
-                if($state.includes('home')) {
-                    $state.go('needs');
-                } else if ($state.includes('needs')) {
-                    $state.go('productsandservices');
-                } else if ($state.includes('productsandservices')) {
-                    $state.go('home');
-                } else {
-                    $state.go('home');
-                }
-            };
+        function Run ($rootScope,   $state,   $stateParams) {
 
-            // It's very handy to add references to $state and $stateParams to the $rootScope
-            // so that you can access them from any scope within your applications.For example,
-            // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
-            // to active whenever 'contacts.list' or one of its decendents is active.
-            $rootScope.$state = $state;
-            $rootScope.$stateParams = $stateParams;
+                $rootScope.topcycle = function () {
+                    if($state.includes('home')) {
+                        $state.go('needs');
+                    } else if ($state.includes('needs')) {
+                        $state.go('productsandservices');
+                    } else if ($state.includes('productsandservices')) {
+                        $state.go('home');
+                    } else {
+                        $state.go('home');
+                    }
+                };
 
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                //console.log('event:', event);
-                //console.log('toState:', toState);
-                //console.log('toParams:', toParams);
-                //console.log('fromState:', fromState);
-                //console.log('fromParams:', fromParams);
+                // It's very handy to add references to $state and $stateParams to the $rootScope
+                // so that you can access them from any scope within your applications.For example,
+                // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
+                // to active whenever 'contacts.list' or one of its decendents is active.
+                $rootScope.$state = $state;
+                $rootScope.$stateParams = $stateParams;
 
-                if (toState.data.requireLogin === true) {
-                    event.preventDefault();
-                    // console.log('THIS SECTION REQUIRES LOGIN');
-                } else {
-                    // console.log('NO LOGIN REQUIRED ON THIS PAGE');
-                }
-            });
+                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+                    //console.log('event:', event);
+                    //console.log('toState:', toState);
+                    //console.log('toParams:', toParams);
+                    //console.log('fromState:', fromState);
+                    //console.log('fromParams:', fromParams);
 
-            $rootScope.username = 'TEMPORARY USERNAME';
-        }
-]);
+                    if (toState.data.requireLogin === true) {
+                        event.preventDefault();
+                        // console.log('THIS SECTION REQUIRES LOGIN');
+                    } else {
+                        // console.log('NO LOGIN REQUIRED ON THIS PAGE');
+                    }
+                });
+
+                $rootScope.username = 'TEMPORARY USERNAME';
+            }
+
+})();

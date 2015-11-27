@@ -1,8 +1,9 @@
 (function() {
+    'use strict';
 
     angular
-        .module('appDirectives')
-        .directive('keyAdvantages', ['ajaxSvc', 'extDataUrls', KeyAdvantages]);
+    .module('appDirectives')
+    .directive('keyAdvantages', ['ajaxSvc', 'extDataUrls', KeyAdvantages]);
 
     function KeyAdvantages(ajaxSvc, extDataUrls) {
 

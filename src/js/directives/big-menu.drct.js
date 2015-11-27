@@ -3,6 +3,7 @@
  */
 
 (function() {
+    'use strict';
 
     angular
         .module('appDirectives')
@@ -22,7 +23,6 @@
             });
 
         }
-
 
         return {
             restrict: 'A',

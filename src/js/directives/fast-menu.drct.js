@@ -3,44 +3,46 @@
  */
 
 (function() {
+    'use strict';
+
     angular
-        .module('appDirectives')
-        .directive('fastMenu', ['ajaxSvc', 'extDataUrls', FastMenu]);
+    .module('appDirectives')
+    .directive('fastMenu', ['ajaxSvc', 'extDataUrls', FastMenu]);
 
-        function FastMenu(ajaxSvc, extDataUrls) {
+    function FastMenu(ajaxSvc, extDataUrls) {
 
-            var url = extDataUrls.fastMenu;
+        var url = extDataUrls.fastMenu;
 
-            function link(scope, element, attrs) {
+        function link(scope, element, attrs) {
 
-                ajaxSvc.getData(url)
+            ajaxSvc.getData(url)
 
-                    .then(function (response) {
-                        scope.fastMenuData = response.data;
-                        // console.log('Fast menu data obj:', scope.fastMenuData);
-                    },
-                    function (response) {
-                        console.log('Some error happened: ', response);
-                    });
+                .then(function (response) {
+                    scope.fastMenuData = response.data;
+                    // console.log('Fast menu data obj:', scope.fastMenuData);
+                },
+                function (response) {
+                    console.log('Some error happened: ', response);
+                });
 
-                    // Section commented as no additional code to be applied to template;
-                    //.then(function () {
-                    //
-                    //setTimeout(function () {
-                    //
-                    //    // NO JQUERY CODE INCLUDED RIGHT NOW
-                    //
-                    //}, 1);
-                    //
-                    //});
-            }
-
-            return {
-                restrict: 'A',
-                link: link,
-                replace: true,
-                templateUrl: "js/partials/dir-tmpl/fast-menu-tmpl.html"
-            }
+                // Section commented as no additional code to be applied to template;
+                //.then(function () {
+                //
+                //setTimeout(function () {
+                //
+                //    // NO JQUERY CODE INCLUDED RIGHT NOW
+                //
+                //}, 1);
+                //
+                //});
         }
+
+        return {
+            restrict: 'A',
+            link: link,
+            replace: true,
+            templateUrl: "js/partials/dir-tmpl/fast-menu-tmpl.html"
+        }
+    }
 })();
 

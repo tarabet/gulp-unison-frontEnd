@@ -3,10 +3,11 @@
  */
 
 (function() {
+    'use strict';
 
     angular
-        .module('appDirectives')
-        .directive('loginBtn', loginBtn);
+    .module('appDirectives')
+    .directive('loginBtn', loginBtn);
 
     function loginBtn() {
 
