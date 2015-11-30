@@ -7,9 +7,9 @@
 
     angular
         .module('appRun', [])
-        .run(['$rootScope', '$state', '$stateParams', Run]);
+        .run(['$rootScope', '$state', '$stateParams', 'AuthSvc', Run]);
 
-        function Run ($rootScope,   $state,   $stateParams) {
+        function Run ($rootScope,   $state,   $stateParams, AuthSvc) {
 
                 $rootScope.topcycle = function () {
                     if($state.includes('home')) {
@@ -21,6 +21,21 @@
                     } else {
                         $state.go('home');
                     }
+                };
+
+                // $rootScope.curUser = userAuthDataSvc.usr.getMail();
+
+                $rootScope.check = function() {
+                    console.log('curUser triggered');
+                    $rootScope.curUser();
+                };
+
+                $rootScope.curUser = function() {
+                    AuthSvc.$requireAuth().then(function(auth){
+                        return auth.password.email;
+                    }, function(error){
+                        return 'Login';
+                    });
                 };
 
                 // It's very handy to add references to $state and $stateParams to the $rootScope
@@ -45,7 +60,7 @@
                     }
                 });
 
-                $rootScope.username = 'TEMPORARY USERNAME';
+                $rootScope.defaultUser = "Enter";
             }
 
 })();

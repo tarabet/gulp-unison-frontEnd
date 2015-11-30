@@ -25,16 +25,14 @@
                     return $('.popup').hide();
                 };
 
-                var requireNoAuth = function($state, Auth){
-                    conseole.log('requireNoAuth triggered');
-                    return Auth.$requireAuth().then(function(auth){
+                var requireNoAuth = ['$state', 'AuthSvc', function($state, AuthSvc){
+                    return AuthSvc.$requireAuth().then(function(auth){
                         console.log('You are logged in, cannot register');
                         $state.go('home');
                     }, function(error){
                         console.log('Not logged in: process to Reg state');
-                        return;
                     });
-                };
+                }];
 
                 $urlRouterProvider.otherwise('/');
 
@@ -47,6 +45,19 @@
                         resolve: {
                             // I will cause a 1 second delay
                             delay: delay
+                        }
+                    })
+
+                    .state('registration', {
+                        url: '/registration',
+                        templateUrl: 'js/partials/registration-tmpl.html',
+                        controller: 'registrationCtrl as authCtrl',
+                        data: {requireLogin: false},
+                        resolve: {
+                            // I will cause a 1 second delay
+                            requireNoAuth: requireNoAuth,
+                            delay: delay,
+                            closePopup: closePopup
                         }
                     })
 
@@ -285,19 +296,6 @@
                         resolve: {
                             // I will cause a 1 second delay
                             delay: delay
-                        }
-                    })
-
-                    .state('registration', {
-                        url: '/registration',
-                        templateUrl: 'js/partials/registration-tmpl.html',
-                        controller: 'registrationCtrl as authCtrl',
-                        data: {requireLogin: false},
-                        resolve: {
-                            // I will cause a 1 second delay
-                            delay: delay,
-                            closePopup: closePopup,
-                            // requireNoAuth: requireNoAuth
                         }
                     })
             }

@@ -11,7 +11,7 @@
 
     function loginBtn() {
 
-        function link(scope, element, attrs, registrationCtrl) {
+        function link(scope, element, attrs, authCtrl) {
 
             element.find(".popup-close").click(function(e){
                 e.preventDefault();

@@ -5,21 +5,25 @@
 (function() {
     angular
         .module('appControllers')
-        .controller('registrationCtrl', ['AuthSvc', '$state', RegistrationCtrl]);
+        .controller('registrationCtrl', ['AuthSvc', '$state', 'userAuthDataSvc', RegistrationCtrl]);
 
-    function RegistrationCtrl (AuthSvc, $state) {
+    function RegistrationCtrl (AuthSvc, $state, userAuthDataSvc) {
 
         var authCtrl = this;
+        authCtrl.loggedIn = false;
 
         authCtrl.user = {
-            email: '',
-            password: ''
+            email: 'tarabet@yandex.ru',
+            password: '123456'
         };
 
         authCtrl.login = function() {
             AuthSvc.$authWithPassword(authCtrl.user).then(function(auth) {
                 $state.go('home');
                 console.log('Success: ', auth);
+                userAuthDataSvc.usr.setMail(auth.password.email);
+                //ToDO: need to find way to get rid of jQuery
+                $('.popup').hide();
             },
             function(error) {
                 authCtrl.error = error;
@@ -40,7 +44,6 @@
           AuthSvc.$unauth();
           $state.go('home');
         };
-
       }
 
 })();
