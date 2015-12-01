@@ -32,10 +32,12 @@ $(document).ready(function () {
         }        
     });
 
-    $('.auth-btn').click(function(e) {
-        e.preventDefault();
-        $('.auth-popup').show();
-    });
+    // Commented because: ng-show is used in directive
+    //
+    //$('.auth-btn').click(function(e) {
+    //    e.preventDefault();
+    //    $('.auth-popup').show();
+    //});
 
     //COMMENTED AS IT IS USED IN DIRECTIVE
     //$(".slider-main-item.item-anim")

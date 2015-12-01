@@ -12,11 +12,7 @@
     function loginBtn() {
 
         function link(scope, element, attrs, authCtrl) {
-
-            element.find(".popup-close").click(function(e){
-                e.preventDefault();
-                element.hide();
-            });
+            //nothing here right now
         }
 
         return {

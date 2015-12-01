@@ -23,21 +23,6 @@
                     }
                 };
 
-                // $rootScope.curUser = userAuthDataSvc.usr.getMail();
-
-                $rootScope.check = function() {
-                    console.log('curUser triggered');
-                    $rootScope.curUser();
-                };
-
-                $rootScope.curUser = function() {
-                    AuthSvc.$requireAuth().then(function(auth){
-                        return auth.password.email;
-                    }, function(error){
-                        return 'Login';
-                    });
-                };
-
                 // It's very handy to add references to $state and $stateParams to the $rootScope
                 // so that you can access them from any scope within your applications.For example,
                 // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
@@ -59,8 +44,6 @@
                         // console.log('NO LOGIN REQUIRED ON THIS PAGE');
                     }
                 });
-
-                $rootScope.defaultUser = "Enter";
             }
 
 })();

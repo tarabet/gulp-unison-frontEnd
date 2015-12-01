@@ -1,33 +1,39 @@
-<div class="popup auth-popup">
-    <div class="popup-container">
-        <div class="popup-close">
-            <i class="fa fa-times"></i>
-        </div>
-        <div class="popup-title">
-            Авторизация
-        </div>
-        <div class="popup-body">
-            <form ng-submit="authCtrl.login()">
-                <label>Логин</label>
-                <input ng-model="authCtrl.user.email" type="text" required="">
-                <label>Пароль</label>
-                <input ng-model="authCtrl.user.password" type="text" required="" class="error">
-                <p class="error">ошибка</p>
-                <div class="error" ng-show="authCtrl.error">
-                    <span>{{ authCtrl.error.message }}</span>
-                </div>
-                <div class="clearfix">
-                    <button class="right btn" value="Submit">Войти</button>
-                </div>
-            </form>
+<div>
+    <a class="auth-btn right" ng-click="authCtrl.showLogModal=true">
+        <i class="fa fa-user" ng-show="authCtrl.loggedIn"></i><span ng-cloak> {{ authCtrl.curUser || "Login" }}</span>
+    </a>
+    <div class="popup auth-popup" ng-show="authCtrl.showLogModal">
+        <div class="popup-container">
+            <div class="popup-close" ng-click="authCtrl.showLogModal=false">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="popup-title">
+                Авторизация
+            </div>
+            <div class="popup-body">
+                <form ng-submit="authCtrl.login()">
+                    <label>Логин</label>
+                    <input ng-model="authCtrl.user.email" type="text" required="">
+                    <label>Пароль</label>
+                    <input ng-model="authCtrl.user.password" type="text" required="" class="error">
+                    <p class="error">ошибка</p>
+                    <div class="error" ng-show="authCtrl.error">
+                        <span>{{ authCtrl.error.message }}</span>
+                    </div>
+                    <div class="clearfix">
+                        <button class="right btn" value="Submit">Войти</button>
+                    </div>
+                </form>
 
-            <div class="centered">
-                <a href="javascript:;" class="simple-link">Напомнить пароль</a>
-                <span>&#124;</span>
-                <a ui-sref="registration" class="simple-link">Регистрация</a>
-                <span>&#124;</span>
-                <a ng-click="authCtrl.logout()" class="simple-link">Logout</a>
+                <div class="centered">
+                    <a href="javascript:;" class="simple-link">Напомнить пароль</a>
+                    <span>&#124;</span>
+                    <a ui-sref="registration" class="simple-link" ng-hide="authCtrl.loggedIn">Регистрация</a>
+                    <span>&#124;</span>
+                    <a ng-click="authCtrl.logout()" class="simple-link" ng-show="authCtrl.loggedIn">Logout</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

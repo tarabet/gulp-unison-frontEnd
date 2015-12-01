@@ -38,13 +38,12 @@
                 <!-- /////////// CHOOSE LANG DIRECTIVE GOES HERE ///////////// -->
                 <div header-lang-btn></div>
                 <!-- /////////// CHOOSE LANG DIRECTIVE GOES HERE ///////////// -->
-                <button ng-click="check()" class="btn btn-success">Test</button>
                 <a href="javascript:;" class="menu-btn right">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="javascript:;" class="auth-btn right">
-                    <i class="fa fa-user"></i><span ng-cloak> {{ curUser || defaultUser }}</span>
-                </a>
+                <!-- /////////// LOGIN BUTTON DIRECTIVE GOES HERE ///////////// -->
+                <div login-btn></div>
+                <!-- /////////// LOGIN BUTTON DIRECTIVE GOES HERE ///////////// -->
                 <div class="clear"></div>
             </div>
         </div> 
@@ -113,8 +112,6 @@
     <div class="scroll-top">
         <i class="fa fa-arrow-up"></i>
     </div>
-
-    <div login-btn></div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

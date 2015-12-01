@@ -752,8 +752,10 @@ h1{
 .footer .unison a:hover{
 	color: #5c2e91;
 }
+
+/* Commented property because angular toggles panel witn ng-hide/show */
 .popup{
-	display: none;
+	/* display: none;*/
 	width: 100%;
 	height: 100%;
 	position: fixed;

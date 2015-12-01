@@ -19,7 +19,6 @@
 
             setMail: function(email) {
                 this.email = email;
-                console.log(this.email);
             },
             getMail: function() {
                 return this.email;
