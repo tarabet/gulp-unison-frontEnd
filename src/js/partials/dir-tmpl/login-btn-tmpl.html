@@ -1,25 +1,24 @@
-<div>
-    <a class="auth-btn right" ng-click="authCtrl.showLogModal=true">
-        <i class="fa fa-user" ng-show="authCtrl.loggedIn"></i><span ng-cloak> {{ authCtrl.curUser || "Login" }}</span>
+<div ng-controller="AuthController as vm">
+    <a class="auth-btn right" ng-click="vm.loginLinkLogic()">
+        <i class="fa fa-user" ng-show="vm.loggedIn"></i><span ng-cloak> {{ vm.curUser || "Login" }} </span>
+        <i class="fa fa-times-circle-o" ng-show="vm.loggedIn" ng-click="vm.logout()"></i>
     </a>
-    <div class="popup auth-popup" ng-show="authCtrl.showLogModal">
+    <div class="popup auth-popup" ng-show="vm.showLogModal">
         <div class="popup-container">
-            <div class="popup-close" ng-click="authCtrl.showLogModal=false">
+            <div class="popup-close" ng-click="vm.showLogModal=false">
                 <i class="fa fa-times"></i>
             </div>
             <div class="popup-title">
                 Авторизация
             </div>
             <div class="popup-body">
-                <form ng-submit="authCtrl.login()">
+                <form ng-submit="vm.login()">
                     <label>Логин</label>
-                    <input ng-model="authCtrl.user.email" type="text" required="">
+                    <input ng-model="vm.user.email" type="text" required="" ng-class="{ error: vm.error.login }">
+                    <p ng-show="vm.error.login" ng-class="{ error: vm.error.login }">{{ vm.error.message }}</p>
                     <label>Пароль</label>
-                    <input ng-model="authCtrl.user.password" type="text" required="" class="error">
-                    <p class="error">ошибка</p>
-                    <div class="error" ng-show="authCtrl.error">
-                        <span>{{ authCtrl.error.message }}</span>
-                    </div>
+                    <input ng-model="vm.user.password" type="text" required="" ng-class="{ error: vm.error.password }">
+                    <p ng-show="vm.error.password" ng-class="{ error: vm.error.password }">{{ vm.error.message }}</p>
                     <div class="clearfix">
                         <button class="right btn" value="Submit">Войти</button>
                     </div>
@@ -28,9 +27,7 @@
                 <div class="centered">
                     <a href="javascript:;" class="simple-link">Напомнить пароль</a>
                     <span>&#124;</span>
-                    <a ui-sref="registration" class="simple-link" ng-hide="authCtrl.loggedIn">Регистрация</a>
-                    <span>&#124;</span>
-                    <a ng-click="authCtrl.logout()" class="simple-link" ng-show="authCtrl.loggedIn">Logout</a>
+                    <a ui-sref="registration" ng-click="vm.showLogModal=false" class="simple-link" ng-hide="vm.loggedIn">Регистрация</a>
                 </div>
             </div>
         </div>

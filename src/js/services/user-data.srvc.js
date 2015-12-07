@@ -9,13 +9,14 @@
 
     angular
         .module('appServices')
-        .factory('userAuthDataSvc', [UserAuthDataSvc]);
+        .factory('userAuthDataSvc', UserAuthDataSvc);
 
     function UserAuthDataSvc() {
 
         var usr = {
 
-            email: '',
+            email: null,
+            loggedIn: null,
 
             setMail: function(email) {
                 this.email = email;

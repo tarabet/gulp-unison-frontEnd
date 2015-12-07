@@ -7,30 +7,23 @@
 
         angular
         .module('appRooting', ['ui.router'])
-        .config([
-            '$stateProvider',
-            '$urlRouterProvider', Rooting]);
+        .config(Rooting);
 
             function Rooting($stateProvider, $urlRouterProvider) {
                 // ROOTING BLOCK STARTS HERE //
                 var delay = function ($q, $timeout) {
                     var delay = $q.defer();
                     $timeout(delay.resolve, 100);
-                    $('.big-menu').hide();
+                    angular.element('.big-menu').hide();
                     return delay.promise;
                 };
 
-                // CLOSES ANY .POPUP ELEMENT ON RESOLVE
-                var closePopup = function () {
-                    return $('.popup').hide();
-                };
-
-                var requireNoAuth = ['$state', 'AuthSvc', function($state, AuthSvc){
+                var requireNoAuth = ['$state', 'AuthSvc', '$log', function($state, AuthSvc, $log){
                     return AuthSvc.$requireAuth().then(function(auth){
-                        console.log('You are logged in, cannot register');
+                        $log.debug('You are logged in, cannot register: ', auth);
                         $state.go('home');
                     }, function(error){
-                        console.log('Not logged in: process to Reg state');
+                        $log.debug('Not logged in: process to Reg state: ', error);
                     });
                 }];
 
@@ -51,13 +44,12 @@
                     .state('registration', {
                         url: '/registration',
                         templateUrl: 'js/partials/registration-tmpl.html',
-                        controller: 'registrationCtrl as authCtrl',
+                        controller: 'RegistrationController',
                         data: {requireLogin: false},
                         resolve: {
                             // I will cause a 1 second delay
                             requireNoAuth: requireNoAuth,
-                            delay: delay,
-                            closePopup: closePopup
+                            delay: delay
                         }
                     })
 
@@ -99,7 +91,7 @@
 
                     .state('safe-rent', {
                         url: '/safe-rent',
-                        controller: 'safeRentCtrl',
+                        controller: 'safeRentCtrl as vm',
                         templateUrl: 'js/partials/safe-rent-tmpl.html',
                         data: {requireLogin: false},
                         resolve: {

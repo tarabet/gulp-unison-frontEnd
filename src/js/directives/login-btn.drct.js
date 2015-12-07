@@ -19,8 +19,8 @@
             restrict: 'A',
             link: link,
             replace: true,
-            controller: "registrationCtrl",
-            controllerAs: "authCtrl",
+            controller: "AuthController",
+            controllerAs: "vm",
             templateUrl: "js/partials/dir-tmpl/login-btn-tmpl.html"
         }
     }
