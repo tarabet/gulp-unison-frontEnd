@@ -7,7 +7,7 @@
 
     angular
     .module('appServices')
-    .factory('AuthSvc', ['$firebaseAuth', 'constants', AuthSvc]);
+    .factory('AuthSvc', AuthSvc);
 
     function AuthSvc($firebaseAuth, constants) {
 

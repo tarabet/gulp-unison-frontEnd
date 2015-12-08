@@ -1,19 +1,19 @@
-<div class="auth-form">
+<div class="auth-form" ng-controller="RegistrationController as vm">
     <div class="container clearfix">
         <h1>Регистрация</h1>
-        <form class="default-form" ng-submit="authCtrl.register()" novalidate>
+        <form class="default-form" ng-submit="vm.register()" novalidate>
             <label for="email">Email</label>
-            <input ng-model="authCtrl.user.email" id="email" type="text" name="email">
+            <input ng-model="vm.user.email" id="email" type="text" name="email">
             <!--<label>Имя</label>-->
             <!--<input ng-model="regData.name" type="text" name="name">-->
             <label for="password">Пароль</label>
-            <input ng-model="authCtrl.user.password" id="password" type="text" class="error" name="pass">
+            <input ng-model="vm.user.password" id="password" type="text" class="error" name="pass">
             <p class="error">ошибка</p>
             <div class="error" ng-show="authCtrl.error">
-                <span>{{ authCtrl.error.message }}</span>
+                <span>{{ vm.error.message }}</span>
             </div>
             <div class="centered">
-                <a href="javascript:;" class="simple-link">Назад</a>
+                <a ng-click="goBack()" class="simple-link">Назад</a>
                 <button class="btn" value="Submit">Регистрация</button>
             </div>
         </form>

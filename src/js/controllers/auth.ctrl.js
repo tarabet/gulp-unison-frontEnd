@@ -7,7 +7,7 @@
         .module('appControllers')
         .controller('AuthController', AuthController);
 
-    function AuthController ($timeout, $log, AuthSvc, $state, userAuthDataSvc) {
+    function AuthController ($rootScope, $timeout, $log, AuthSvc, $state, userAuthDataSvc) {
 
         var vm = this;
 
@@ -17,6 +17,14 @@
         vm.user = {
             email: 'tarabet@yandex.ru',
             password: '123456'
+        };
+
+        vm.setCurUser = function(data) {
+            $rootScope.curUser = data;
+        };
+
+        vm.getCurUser = function() {
+            return $rootScope.curUser;
         };
 
         // If user is logged-in "Login link" will go to "Profile" page
@@ -34,9 +42,10 @@
                 vm.loggedIn = true;
                 $timeout(function() {
                     vm.showLogModal = false;
-                    vm.curUser = auth.password.email;
+                    vm.setCurUser(auth.password.email);
+                    vm.curUser = vm.getCurUser();
                 }, 1);
-            }, function(error){
+            }, function(_error){
                 vm.loggedIn = false;
                 $log.debug('User not logged in');
             });
@@ -55,7 +64,8 @@
                     userAuthDataSvc.usr.setMail(auth.password.email);
                     $timeout(function() {
                         vm.showLogModal = false;
-                        vm.curUser = auth.password.email;
+                        vm.setCurUser(auth.password.email);
+                        vm.curUser = vm.getCurUser();
                         vm.loggedIn = true;
                     }, 1);
                 },
@@ -72,21 +82,13 @@
                 });
         };
 
-        vm.register = function() {
-            AuthSvc.$createUser(vm.user).then(function(user) {
-                    vm.login();
-                },
-                function(error) {
-                    vm.error = error;
-                });
-        };
-
         vm.logout = function() {
             $log.debug('Unauth triggered');
             AuthSvc.$unauth();
             $timeout(function() {
                 $state.go('home');
-                vm.curUser = null;
+                vm.setCurUser(null);
+                vm.curUser = vm.getCurUser();
                 vm.loggedIn = false;
                 vm.showLogModal = false;
             },1);

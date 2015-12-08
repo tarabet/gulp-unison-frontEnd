@@ -13,18 +13,17 @@
 
     function UserAuthDataSvc() {
 
-        var usr = {
+        var usr = {};
 
-            email: null,
-            loggedIn: null,
+        usr.email = null;
+        usr.loggedIn = null;
 
-            setMail: function(email) {
-                this.email = email;
-            },
-            getMail: function() {
-                return this.email;
-            }
+        usr.setMail = function (email) {
+            usr.email = email;
+        };
 
+        usr.getMail = function () {
+            return usr.email;
         };
 
         return {

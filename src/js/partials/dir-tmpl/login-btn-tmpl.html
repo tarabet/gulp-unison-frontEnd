@@ -1,6 +1,6 @@
 <div ng-controller="AuthController as vm">
     <a class="auth-btn right" ng-click="vm.loginLinkLogic()">
-        <i class="fa fa-user" ng-show="vm.loggedIn"></i><span ng-cloak> {{ vm.curUser || "Login" }} </span>
+        <i class="fa fa-user" ng-show="vm.loggedIn"></i><span ng-cloak> {{ curUser || "Login" }} </span>
         <i class="fa fa-times-circle-o" ng-show="vm.loggedIn" ng-click="vm.logout()"></i>
     </a>
     <div class="popup auth-popup" ng-show="vm.showLogModal">

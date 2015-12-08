@@ -9,5 +9,12 @@
     "angular": true,
     "module": true,
     "inject": true
-  }
+  },
+  "rules": {
+      // Ignore unused variables (and arguments) which start from "_"
+      // This is done because $on method needs to be assigned to variable
+      // This variable is used to destroy the $on listener on $destroy event
+      "no-unused-vars": [2, {"varsIgnorePattern": "^_", "argsIgnorePattern": "^_"}]
+    }
 }
+
