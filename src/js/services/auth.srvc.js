@@ -9,14 +9,31 @@
     .module('appServices')
     .factory('AuthSvc', AuthSvc);
 
-    function AuthSvc($firebaseAuth, constants) {
+    function AuthSvc($log, userAuthDataSvc, $firebaseAuth, constants) {
 
-        var ref, auth;
+        function connect() {
+            var ref, auth;
+            ref = new Firebase(constants.FirebaseUrl);
+            auth = $firebaseAuth(ref);
+            return auth;
+        }
 
-        ref = new Firebase(constants.FirebaseUrl);
-        auth = $firebaseAuth(ref);
+        function checkLogin() {
+            var promise;
+            promise = connect().$requireAuth().then(function(auth) {
+                    return auth;
+                }, function(error) {
+                    return error;
+                });
 
-        return auth;
+            return promise;
+        }
+
+        return {
+            connect: connect(),
+            checkLogin: checkLogin()
+        }
+
     }
 
 })();
