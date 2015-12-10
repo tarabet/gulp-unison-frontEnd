@@ -9,8 +9,9 @@
     .module('appServices')
     .factory('AuthSvc', AuthSvc);
 
-    function AuthSvc($log, userAuthDataSvc, $firebaseAuth, constants) {
+    function AuthSvc(userAuthDataSvc, $firebaseAuth, constants, $q) {
 
+        // Creates firebase connection Object
         function connect() {
             var ref, auth;
             ref = new Firebase(constants.FirebaseUrl);
@@ -19,19 +20,34 @@
         }
 
         function checkLogin() {
-            var promise;
-            promise = connect().$requireAuth().then(function(auth) {
-                    return auth;
-                }, function(error) {
-                    return error;
-                });
+            var defer = $q.defer();
+            connect().$requireAuth().then(function(user) {
+                defer.resolve(user);
+            }, function(err) {
+                defer.reject(err);
+            });
+            return defer.promise;
+        }
 
-            return promise;
+        function login(obj) {
+            var defer = $q.defer();
+            connect().$authWithPassword(obj).then(function(auth) {
+                defer.resolve(auth);
+            }, function(err) {
+                defer.reject(err)
+            });
+            return defer.promise;
+        }
+
+        function logout() {
+            connect().$unauth();
         }
 
         return {
-            connect: connect(),
-            checkLogin: checkLogin()
+            connect: connect,
+            checkLogin: checkLogin,
+            login: login,
+            logout: logout
         }
 
     }

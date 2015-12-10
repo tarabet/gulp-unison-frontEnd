@@ -15,24 +15,42 @@
 
         function User () {
 
-            this.email = 'tarabet@yandex.ru';
-            this.password = "123456";
-            var _loggedIn = null;
+            var email = 'tarabet@yandex.ru';
+            var password = "123456";
+            var loggedIn = false;
 
-            this.setMail = function (email) {
-                this.email = email;
+            this.setLoggedIn = function(flag) {
+                if (flag === true) {
+                    loggedIn = true;
+                } else if (flag === false) {
+                    loggedIn = false;
+                }
+            };
+
+            this.getLoggedIn = function () {
+                return loggedIn;
+            };
+
+            this.setMail = function (e) {
+               email = e;
             };
 
             this.getMail = function () {
-                return this.email;
+                return email;
+            };
+
+            this.getPassword = function () {
+                return password;
             };
         }
 
         var user = new User();
 
         return {
-            email: user.email,
-            password: user.password,
+            email: user.getMail,
+            password: user.getPassword,
+            setLoggedIn: user.setLoggedIn,
+            loggedIn: user.getLoggedIn,
             setMail: user.setMail
         };
     }

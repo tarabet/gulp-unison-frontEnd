@@ -19,8 +19,13 @@
             restrict: 'A',
             link: link,
             replace: true,
-            controller: "AuthController",
-            controllerAs: "vm",
+
+            // Commented Controller because it is instantiated inside directive template
+            // via ng-controller="AuthController as vm"
+            // This doubles controller instantiation
+
+            //controller: "AuthController",
+            //controllerAs: "vm",
             templateUrl: "js/partials/dir-tmpl/login-btn-tmpl.html"
         }
     }

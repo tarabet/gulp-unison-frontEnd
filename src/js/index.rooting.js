@@ -19,7 +19,7 @@
                 };
 
                 var requireNoAuth = ['$state', 'AuthSvc', '$log', function($state, AuthSvc, $log){
-                    return AuthSvc.$requireAuth().then(function(auth){
+                    return AuthSvc.checkLogin().then(function(auth){
                         $log.debug('You are logged in, cannot register: ', auth);
                         $state.go('home');
                     }, function(error){

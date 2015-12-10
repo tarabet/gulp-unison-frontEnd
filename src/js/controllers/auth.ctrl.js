@@ -9,27 +9,32 @@
 
     function AuthController (AuthSvc, $rootScope, $timeout, $log, $state, userAuthDataSvc) {
 
+        $log.warn('AuthController instantinated');
+
         var vm = this;
 
-        vm.loggedIn = false;
+        vm.loggedIn = function() {
+            return userAuthDataSvc.loggedIn();
+        };
+
+        vm.curUser = function() {
+            return $rootScope.curUser;
+        };
+
         vm.showLogModal = false;
 
         vm.user = {
-            email: userAuthDataSvc.email,
-            password: userAuthDataSvc.password
+            email: userAuthDataSvc.email(),
+            password: userAuthDataSvc.password()
         };
 
         vm.setCurUser = function(data) {
             $rootScope.curUser = data;
         };
 
-        vm.getCurUser = function() {
-            return $rootScope.curUser;
-        };
-
         // If user is logged-in "Login link" will go to "Profile" page
         vm.loginLinkLogic = function() {
-            if (vm.loggedIn === false) {
+            if (!vm.loggedIn()) {
                 vm.showLogModal = true;
             } else {
                 $state.go('userprofile');
@@ -37,19 +42,16 @@
         };
 
         // Initiates at page-load to check if user is already logged in
-        //vm.checkLogin = function() {
-        //    AuthSvc.connect.$requireAuth().then(function(auth){
-        //        vm.loggedIn = true;
-        //        $timeout(function() {
-        //            vm.showLogModal = false;
-        //            vm.setCurUser(auth.password.email);
-        //            vm.curUser = vm.getCurUser();
-        //        }, 1);
-        //    }, function(_error){
-        //        vm.loggedIn = false;
-        //        $log.debug('User not logged in');
-        //    });
-        //};
+        AuthSvc.checkLogin().then(function (user) {
+            $timeout(function() {
+                vm.showLogModal = false;
+                userAuthDataSvc.setLoggedIn(true);
+                vm.setCurUser(user.password.email);
+            }, 1);
+        }, function(err) {
+            userAuthDataSvc.setLoggedIn(false);
+            $log.warn('User not logged in: ', err);
+        });
 
         // Triggers when "Login" button is pressed
         vm.login = function() {
@@ -58,43 +60,41 @@
             vm.error.login = null;
             vm.error.password = null;
 
-            AuthSvc.connect.$authWithPassword(vm.user).then(function(auth) {
+            AuthSvc.login(vm.user).then(function(auth) {
                     $state.go('home');
                     $log.debug('Success: ', auth);
                     userAuthDataSvc.setMail(auth.password.email);
                     $timeout(function() {
                         vm.showLogModal = false;
+                        userAuthDataSvc.setLoggedIn(true);
                         vm.setCurUser(auth.password.email);
-                        vm.curUser = vm.getCurUser();
-                        vm.loggedIn = true;
                     }, 1);
                 },
-                function(error) {
+                function(err) {
                     // Check what kind of error we got (login or password)
-                    vm.error = error;
+                    vm.error = err;
                     if(vm.error.message.search('The specified user does not exist') !== -1) {
                         vm.error.login = true;
                     } else if (vm.error.message.search('The specified password is incorrect') !== -1) {
                         vm.error.password = true;
                     } else {
-                        $log.log(vm.error);
+                        $log.warn(vm.error);
                     }
                 });
         };
 
         vm.logout = function() {
-            $log.debug('Unauth triggered');
-            AuthSvc.connect.$unauth();
-            $timeout(function() {
-                $state.go('home');
-                vm.setCurUser(null);
-                vm.curUser = vm.getCurUser();
-                vm.loggedIn = false;
-                vm.showLogModal = false;
-            },1);
+            AuthSvc.logout();
+            AuthSvc.checkLogin().catch(function() {
+                $timeout(function() {
+                    vm.showLogModal = false;
+                    $state.go('home');
+                    vm.setCurUser(null);
+                    userAuthDataSvc.setLoggedIn(false);
+                },500);
+            });
         };
 
-        $log.debug('AuthSvc.checkLogin RESPONSE: ', AuthSvc.checkLogin);
         //vm.curUser = vm.checkLogin();
 
     }
